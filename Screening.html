@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Systems Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            color: black; /* Question color */
+            font-weight: bold;
+        }
+        .answer {
+            color: blue; /* Answer color */
+        }
+    </style>
+</head>
+<body>
+    <h1>C Programming Questionnaire</h1>
+    
+    <label for="candidateName">Candidate Name:</label><br>
+    <input type="text" id="candidateName" required><br><br>
+
+    <form id="questionnaire">
+        <div class="question">
+            <label for="q1">1. Write a macro to get the square of a given number. Is macro enough or function is preferred in embedded systems?</label><br>
+            <textarea id="q1" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q2">2. Write an example for below & explain the difference: Variable Pointer, Array Pointer, Function Pointer, Regular Double Pointer.</label><br>
+            <textarea id="q2" rows="5" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q3">3. Write a function to find the number of occurrences of a character in a given string.</label><br>
+            <textarea id="q3" rows="4" cols="50"></textarea>
+        </div>
+        
+        <div class="question">
+            <label for="q4">4. Given the following code, what bugs might you find?<br>
+                <code>char buffer[8];<br>strcpy(buffer, "hello world");</code></label><br>
+            <textarea id="q4" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q5">5. Given the following code, what bugs might you find?<br>
+                <code>void function (uint32_t * param) {<br>*param = 10;<br>return TRUE;}</code></label><br>
+            <textarea id="q5" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q6">6. What is const volatile?</label><br>
+            <textarea id="q6" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q7">7. Explain what is "chmod 744"</label><br>
+            <textarea id="q7" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q8">8. Write a logic to create a race condition.</label><br>
+            <textarea id="q8" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q9">9. Write a macro in C to set the nth bit of a number x. Example usage: SET_BIT(x, 3) sets bit 3 of x.</label><br>
+            <textarea id="q9" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="question">
+            <label for="q10">10. What will be the output of the following code? Briefly explain why<br>
+                <code>int x = 7;<br>printf("%d\n", (x++ + ++x));</code></label><br>
+            <textarea id="q10" rows="4" cols="50"></textarea>
+        </div>
+
+        <button type="button" onclick="downloadResults();">Submit Answers</button>
+    </form>
+
+    <script>
+        function downloadResults() {
+            const name = document.getElementById("candidateName").value.trim();
+            const date = new Date().toISOString().split('T')[0];
+            const questions = [
+                "Write a macro to get the square of a given number. Is macro enough or function is preferred in embedded systems?",
+                "Write an example for below & explain the difference: Variable Pointer, Array Pointer, Function Pointer, Regular Double Pointer.",
+                "Find the number of occurrences of a character in a given string.",
+                "Given the following code, what bugs might you find?<br><code>char buffer[8];<br>strcpy(buffer, \"hello world\");</code>",
+                "Given the following code, what bugs might you find?<br><code>void function(uint32_t * param) {<br>*param = 10;<br>return TRUE;}</code>",
+                "What is const volatile?",
+                "Explain chmod 744.",
+                "Write a logic to create a race condition.",
+                "Write a macro in C to set the nth bit of a number x. Example usage: SET_BIT(x, 3) sets bit 3 of x.",
+                "What will be the output of the following code? Briefly explain why<br><code>int x = 7;<br>printf(\"%d\\n\", (x++ + ++x));</code>"
+            ];
+            const answers = [
+                document.getElementById("q1").value,
+                document.getElementById("q2").value,
+                document.getElementById("q3").value,
+                document.getElementById("q4").value,
+                document.getElementById("q5").value,
+                document.getElementById("q6").value,
+                document.getElementById("q7").value,
+                document.getElementById("q8").value,
+                document.getElementById("q9").value,
+                document.getElementById("q10").value
+            ];
+
+            // Create downloadable HTML file
+            const resultsText = `
+                <html>
+                <head>
+                    <title>Results for ${name}</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                        }
+                        .question {
+                            color: black; /* Question color */
+                            font-weight: bold;
+                        }
+                        .answer {
+                            color: blue; /* Answer color */
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>C Programming Questionnaire Results</h1>
+                    <strong>Candidate Name: ${name}</strong><br>
+                    <strong>Date: ${date}</strong><br><br>
+                    <strong>Responses:</strong><br>
+                    <ol>
+                        <li class="question">${questions[0]}<br><span class="answer">${answers[0]}</span></li>
+                        <li class="question">${questions[1]}<br><span class="answer">${answers[1]}</span></li>
+                        <li class="question">${questions[2]}<br><span class="answer">${answers[2]}</span></li>
+                        <li class="question">${questions[3]}<br><span class="answer">${answers[3]}</span></li>
+                        <li class="question">${questions[4]}<br><span class="answer">${answers[4]}</span></li>
+                        <li class="question">${questions[5]}<br><span class="answer">${answers[5]}</span></li>
+                        <li class="question">${questions[6]}<br><span class="answer">${answers[6]}</span></li>
+                        <li class="question">${questions[7]}<br><span class="answer">${answers[7]}</span></li>
+                        <li class="question">${questions[8]}<br><span class="answer">${answers[8]}</span></li>
+                        <li class="question">${questions[9]}<br><span class="answer">${answers[9]}</span></li>
+                    </ol>
+                </body>
+                </html>
+            `;
+            
+            const blob = new Blob([resultsText], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${name}_${date}.html`; // filename format
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
